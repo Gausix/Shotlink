@@ -23,7 +23,7 @@ func handleScreenshot(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Viewport desejado
+	// Desired viewport
 	const width, height = 1280, 720
 
 	// Create context for chromedp
