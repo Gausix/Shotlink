@@ -1,7 +1,7 @@
-FROM golang:1.22.0-bookworm-slim
+FROM golang:alpine3.22
 
 # Instala dependências do sistema
-RUN apt-get update && apt-get install -y \
+RUN apk add --no-cache \
     wget \
     gnupg \
     ca-certificates \
