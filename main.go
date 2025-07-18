@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/chromedp/chromedp"
+	"github.com/chromedp/cdproto/emulation"
 )
 
 func main() {
@@ -22,6 +23,9 @@ func handleScreenshot(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Viewport desejado
+	const width, height = 1280, 720
+
 	// Create context for chromedp
 	ctx, cancel := chromedp.NewContext(context.Background())
 	defer cancel()
@@ -33,9 +37,10 @@ func handleScreenshot(w http.ResponseWriter, r *http.Request) {
 	// Screenshot in memory
 	var buf []byte
 	err := chromedp.Run(ctx,
+		emulation.SetDeviceMetricsOverride(int64(width), int64(height), 1.0, false),
 		chromedp.Navigate(url),
-		chromedp.WaitReady("body", chromedp.ByQuery),
-		chromedp.FullScreenshot(&buf, 90),
+		chromedp.WaitReady("body"),
+		chromedp.CaptureScreenshot(&buf),
 	)
 
 	if err != nil {
