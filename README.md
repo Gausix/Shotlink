@@ -1,5 +1,6 @@
 # Snaptor
-Website screenshot API service
+
+**Snaptor** is a lightweight and efficient REST API service written in Go that allows you to capture high-quality screenshots of websites programmatically. Designed for developers, automation tools, monitoring systems, and visual reporting platforms, Snaptor leverages Chrome Headless via `chromedp` to render fully interactive web pages—including dynamic JavaScript content and custom styles.
 
 # How to use
 
@@ -7,11 +8,13 @@ Website screenshot API service
 2. **Receive the screenshot**: The server will respond with a PNG image of the website screenshot.
 
 # Example request
+
 ```bash
 curl -X GET "https://snaptor.httpshield.net/get?url=https://example.com" -o screenshot.png
 ```
 
 # Requirements
+
 - Go 1.18 or later
 - `chromedp` package for browser automation
 - `cdproto` package for Chrome DevTools Protocol
