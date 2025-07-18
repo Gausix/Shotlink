@@ -1,7 +1,7 @@
-FROM golang:alpine3.22
+FROM golang:1.22.0-bookworm-slim
 
-# Instala dependências do sistema
-RUN apk add --no-cache \
+# Instala dependências do sistema e do Chrome
+RUN apt-get update && apt-get install -y \
     wget \
     gnupg \
     ca-certificates \
@@ -15,30 +15,29 @@ RUN apk add --no-cache \
     libnspr4 \
     libnss3 \
     lsb-release \
-    xdg-utils \
-    --no-install-recommends && \
+    xdg-utils && \
     rm -rf /var/lib/apt/lists/*
 
-# Adiciona chave e repositório do Chrome
+# Instala o Google Chrome
 RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
     apt-get update && apt-get install -y google-chrome-stable && \
     rm -rf /var/lib/apt/lists/*
 
-# Define diretório de trabalho
+# Define diretório do app
 WORKDIR /app
 
-# Copia os arquivos
+# Copia o projeto
 COPY . .
 
-# Instala dependências Go
+# Resolve dependências
 RUN go mod tidy
 
-# Compila o app
+# Compila o binário
 RUN go build -o server .
 
-# Expõe porta
+# Expõe a porta
 EXPOSE 8080
 
-# Executa binário
+# Executa
 CMD ["./server"]
