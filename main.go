@@ -4,7 +4,6 @@ import (
 	"context"
 	"log"
 	"net/http"
-	"strconv"
 	"time"
 
 	"github.com/chromedp/cdproto/emulation"
@@ -28,24 +27,6 @@ func handleScreenshot(writer http.ResponseWriter, r *http.Request) {
 	// Get width and height from query parameters, or use defaults
 	width := 1280
 	height := 720
-
-	if widthStr := r.URL.Query().Get("width"); widthStr != "" {
-		if parsedWidth, err := strconv.Atoi(widthStr); err == nil && parsedWidth > 0 {
-			width = parsedWidth
-		} else {
-			http.Error(writer, "Invalid width parameter", http.StatusBadRequest)
-			return
-		}
-	}
-
-	if heightStr := r.URL.Query().Get("height"); heightStr != "" {
-		if parsedHeight, err := strconv.Atoi(heightStr); err == nil && parsedHeight > 0 {
-			height = parsedHeight
-		} else {
-			http.Error(writer, "Invalid height parameter", http.StatusBadRequest)
-			return
-		}
-	}
 
 	log.Printf("Taking screenshot with dimensions: %dx%d", width, height)
 
