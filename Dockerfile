@@ -1,4 +1,4 @@
-FROM golang:1.22.0-bookworm-slim
+FROM golang:1.24.5-bookworm
 
 # Instala dependências do sistema e do Chrome
 RUN apt-get update && apt-get install -y \
