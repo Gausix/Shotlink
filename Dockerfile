@@ -1,4 +1,4 @@
-FROM golang:1.22.4-slim
+FROM golang:1.22-slim
 
 # Instala dependências + Chrome headless
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
