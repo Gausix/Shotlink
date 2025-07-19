@@ -1,45 +1,38 @@
 package core
 
 import (
-	"context"
 	"log"
-	"net/http"
 	"time"
+	"context"
+	"net/http"
 
-	"github.com/chromedp/cdproto/emulation"
 	"github.com/chromedp/chromedp"
+	"github.com/chromedp/cdproto/emulation"
 )
 
 func HandleScreenshot(writer http.ResponseWriter, r *http.Request) {
-	// Get URL parameter
 	url := r.URL.Query().Get("url")
 	if url == "" {
 		http.Error(writer, "'url' parameter is required", http.StatusBadRequest)
 		return
 	}
 
-	// Get width and height from query parameters, or use defaults
-	width := 1280
-	height := 720
-
+	width, height := 1280, 720
 	log.Printf("Taking screenshot with dimensions: %dx%d", width, height)
 
-	// Create context for chromedp
 	ctx, cancel := chromedp.NewContext(context.Background())
 	defer cancel()
 
-	// 15s timeout
 	ctx, cancel = context.WithTimeout(ctx, 30*time.Second)
 	defer cancel()
 
-	// Screenshot in memory
 	var buf []byte
 	err := chromedp.Run(ctx,
 		emulation.SetDeviceMetricsOverride(int64(width), int64(height), 1.0, false),
 		chromedp.Navigate(url),
 		chromedp.WaitReady("body"),
-		chromedp.Sleep(2*time.Second), // Wait for page to load
-
+		chromedp.Sleep(2*time.Second),
+		
 		chromedp.ActionFunc(func(ctx context.Context) error {
 			return chromedp.CaptureScreenshot(&buf).Do(ctx)
 		}),
@@ -50,7 +43,6 @@ func HandleScreenshot(writer http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Send PNG image as response
 	writer.Header().Set("Content-Type", "image/png")
 	writer.WriteHeader(http.StatusOK)
 	writer.Write(buf)
