@@ -11,6 +11,10 @@ import (
 )
 
 func main() {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "https://httpshield.net", http.StatusFound)
+	})
+
 	http.HandleFunc("/get", handleScreenshot)
 	log.Println("Server running at http://localhost:8080/")
 	log.Fatal(http.ListenAndServe(":8080", nil))
@@ -45,7 +49,7 @@ func handleScreenshot(writer http.ResponseWriter, r *http.Request) {
 		chromedp.Navigate(url),
 		chromedp.WaitReady("body"),
 		chromedp.Sleep(2*time.Second), // Wait for page to load
-		
+
 		chromedp.ActionFunc(func(ctx context.Context) error {
 			return chromedp.CaptureScreenshot(&buf).Do(ctx)
 		}),
