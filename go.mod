@@ -1,4 +1,4 @@
-module snaptor
+module shotlink
 
 go 1.24.4
 

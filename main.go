@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"snaptor/core"
+	"shotlink/core"
 )
 
 func main() {
