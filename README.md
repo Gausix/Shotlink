@@ -1,6 +1,6 @@
-# Snaptor
+# Shotlink
 
-**Snaptor** is a lightweight and efficient REST API service written in Go that allows you to capture high-quality screenshots of websites programmatically. Designed for developers, automation tools, monitoring systems, and visual reporting platforms, Snaptor leverages Chrome Headless via `chromedp` to render fully interactive web pages—including dynamic JavaScript content and custom styles.
+**Shotlink** is a lightweight and efficient REST API service written in Go that allows you to capture high-quality screenshots of websites programmatically. Designed for developers, automation tools, monitoring systems, and visual reporting platforms, Snaptor leverages Chrome Headless via `chromedp` to render fully interactive web pages—including dynamic JavaScript content and custom styles.
 
 # How to use
 
