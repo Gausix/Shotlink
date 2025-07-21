@@ -4,13 +4,13 @@
 
 # How to use
 
-1. **Make a request**: Send a GET request to `https://snaptor.httpshield.net/get?url=<URL>`, replacing `<URL>` with the website you want to capture.
+1. **Make a request**: Send a GET request to `https://snaptor.nexvul.com/get?url=<URL>`, replacing `<URL>` with the website you want to capture.
 2. **Receive the screenshot**: The server will respond with a PNG image of the website screenshot.
 
 # Example request
 
 ```bash
-curl -X GET "https://snaptor.httpshield.net/get?url=https://example.com" -o screenshot.png
+curl -X GET "https://snaptor.nexvul.com/get?url=https://example.com" -o screenshot.png
 ```
 
 # Requirements
