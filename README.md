@@ -32,11 +32,11 @@ curl -X GET "https://snaptor.nexvul.com/get?url=https://example.com" -o screensh
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Gausix/Snaptor
+   git clone https://github.com/Gausix/Shotlink
    ```
 2. Change into the project directory:
    ```bash
-   cd Snaptor
+   cd Shotlink
    ```
 3. Install the required Go packages:
    ```bash
