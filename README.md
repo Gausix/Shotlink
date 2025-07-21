@@ -1,4 +1,6 @@
-# Shotlink
+# Shotlink 
+
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/shotlink?referralCode=U520U6)
 
 **Shotlink** is a lightweight and efficient REST API service written in Go that allows you to capture high-quality screenshots of websites programmatically. Designed for developers, automation tools, monitoring systems, and visual reporting platforms, Snaptor leverages Chrome Headless via `chromedp` to render fully interactive web pages—including dynamic JavaScript content and custom styles.
 
