@@ -35,17 +35,6 @@ func HandleScreenshot(writer http.ResponseWriter, r *http.Request) {
 	}
 
 	width, height := 1280, 720
-	if w := r.URL.Query().Get("w"); w != "" {
-		if val, err := strconv.Atoi(w); err == nil {
-			width = val
-		}
-	}
-	if h := r.URL.Query().Get("h"); h != "" {
-		if val, err := strconv.Atoi(h); err == nil {
-			height = val
-		}
-	}
-
 	timeout := 30 * time.Second
 	if t := os.Getenv("SCREENSHOT_TIMEOUT"); t != "" {
 		if val, err := strconv.Atoi(t); err == nil {
